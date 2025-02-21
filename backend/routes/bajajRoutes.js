@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-router.post("/bfhl", async (req, res) => {
+router.post("/bfhl", (req, res) => {
   try {
     if (!req.body.data || !Array.isArray(req.body.data)) {
       return res.status(400).json({ is_success: false, message: "Invalid input format" });
@@ -12,21 +12,19 @@ router.post("/bfhl", async (req, res) => {
 
     const numbers = inputArray.filter(item => /^[0-9]+$/.test(item)).map(Number);
     const alphabets = inputArray
-      .filter(item => /^[a-zA-Z]$/.test(item)) // Ensuring only single alphabet characters
-      .map(char => char.toUpperCase()); // Convert all alphabets to uppercase
+      .filter(item => /^[a-zA-Z]$/.test(item))
+      .map(char => char.toUpperCase());
 
-    // Find highest alphabet (last in A-Z order)
     const highestAlphabet = alphabets.length > 0 ? [alphabets.sort((a, b) => b.localeCompare(a))[0]] : [];
 
-    // Response JSON structure
     res.json({
       is_success: true,
-      user_id: "ashwani_22082004", // Change this accordingly
-      email: "ashwani@xyz.com", // Change this accordingly
-      roll_number: "22BCS16719", // Change this accordingly
+      user_id: "ashwani_22082004",
+      email: "ghanghasashwani@gmail.com",
+      roll_number: "22BCS16719",
       numbers,
       alphabets,
-      highest_alphabet: highestAlphabet, // Ensuring an array
+      highest_alphabet: highestAlphabet,
     });
   } catch (error) {
     console.error("❌ Error processing request:", error);
