@@ -4,11 +4,11 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
-const connectDB = require("./config/db");
+// const connectDB = require("./config/db");
 const bajajRoutes = require("./routes/bajajRoutes");
 
 dotenv.config();
-connectDB();
+// connectDB();
 
 const app = express();
 app.use(cors());
